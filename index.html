@@ -9,7 +9,6 @@
   <link rel="icon" href="/favicon.png" type="image/png" />
 
   <style>
-
     :root {
       --bg: #f6f7fb;
       --card: #ffffff;
@@ -22,19 +21,11 @@
       --success: #16a34a;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        "Noto Sans KR",
-        sans-serif;
-
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
       background: var(--bg);
       color: var(--text);
     }
@@ -44,10 +35,6 @@
       margin: 0 auto;
       padding: 28px 24px 60px;
     }
-
-    /* =========================
-       TOP TAB
-    ========================= */
 
     .top-tabs {
       display: flex;
@@ -59,125 +46,78 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-
       padding: 14px 22px;
-
       border-radius: 16px;
       background: white;
       border: 1px solid var(--line);
-
       color: var(--text);
       text-decoration: none;
-
       font-size: 16px;
       font-weight: 900;
-
       transition: all .15s ease;
-
-      box-shadow:
-        0 6px 18px rgba(15,23,42,.05);
+      box-shadow: 0 6px 18px rgba(15,23,42,.05);
     }
 
-    .tab-btn:hover {
-      transform: translateY(-1px);
-    }
+    .tab-btn:hover { transform: translateY(-1px); }
 
     .tab-btn.active {
-      background:
-        linear-gradient(
-          135deg,
-          #1d4ed8,
-          #7c3aed
-        );
-
+      background: linear-gradient(135deg, #1d4ed8, #7c3aed);
       color: white;
       border-color: transparent;
     }
 
-    /* =========================
-       HERO
-    ========================= */
+    .hero {
+      background: linear-gradient(135deg, #1d4ed8, #7c3aed);
+      color: white;
+      padding: 28px;
+      border-radius: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 18px 40px rgba(37,99,235,.22);
+    }
 
-.hero {
-  background:
-    linear-gradient(
-      135deg,
-      #1d4ed8,
-      #7c3aed
-    );
+    .hero-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
 
-  color: white;
+    .hero-logo {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      border-radius: 14px;
+    }
 
-  padding: 28px;
+    .hero h1 {
+      margin: 0;
+      font-size: 24px;
+    }
 
-  border-radius: 24px;
-
-  margin-bottom: 20px;
-
-  box-shadow:
-    0 18px 40px rgba(37,99,235,.22);
-}
-
-.hero-title {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 8px;
-}
-
-.hero-logo {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-  border-radius: 14px;
-}
-
-.hero h1 {
-  margin: 0;
-  font-size: 24px;
-}
-
-.hero p {
-  margin: 0;
-  font-size: 16px;
-  line-height: 1.6;
-  opacity: .92;
-}
-
-    /* =========================
-       GRID
-    ========================= */
+    .hero p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.6;
+      opacity: .92;
+    }
 
     .grid {
       display: grid;
-
-      grid-template-columns:
-        minmax(620px,1fr)
-        minmax(620px,1fr);
-
+      grid-template-columns: minmax(620px,1fr) minmax(620px,1fr);
       gap: 24px;
-
       align-items: start;
     }
 
     .card {
       background: white;
-
       border-radius: 20px;
-
       padding: 20px;
-
       border: 1px solid var(--line);
-
-      box-shadow:
-        0 10px 30px rgba(15,23,42,.05);
-
+      box-shadow: 0 10px 30px rgba(15,23,42,.05);
       min-width: 0;
     }
 
-    h2 {
-      margin-top: 0;
-    }
+    h2 { margin-top: 0; }
 
     label {
       display: block;
@@ -185,21 +125,15 @@
       margin: 14px 0 8px;
     }
 
-    input,
-    textarea {
+    input, textarea, select {
       width: 100%;
-
       border: 1px solid var(--line);
-
       border-radius: 14px;
-
       padding: 13px 14px;
-
       font-size: 15px;
-
       outline: none;
-
       font-family: inherit;
+      background: white;
     }
 
     textarea {
@@ -207,25 +141,17 @@
       resize: vertical;
     }
 
-    input:focus,
-    textarea:focus {
+    input:focus, textarea:focus, select:focus {
       border-color: var(--primary);
-
-      box-shadow:
-        0 0 0 4px rgba(37,99,235,.12);
+      box-shadow: 0 0 0 4px rgba(37,99,235,.12);
     }
 
     button {
       border: 0;
-
       border-radius: 14px;
-
       padding: 11px 14px;
-
       font-weight: 900;
-
       cursor: pointer;
-
       font-size: 14px;
     }
 
@@ -234,9 +160,7 @@
       color: white;
     }
 
-    .btn-primary:hover {
-      background: var(--primary-dark);
-    }
+    .btn-primary:hover { background: var(--primary-dark); }
 
     .btn-success {
       background: var(--success);
@@ -265,13 +189,9 @@
       margin-top: 14px;
     }
 
-    .toolbar > * {
-      flex: 1;
-    }
+    .toolbar > * { flex: 1; }
 
-    .table-scroll {
-      overflow-x: auto;
-    }
+    .table-scroll { overflow-x: auto; }
 
     table {
       width: 100%;
@@ -284,16 +204,11 @@
       min-width: 520px;
     }
 
-    th,
-    td {
+    th, td {
       border-bottom: 1px solid var(--line);
-
       padding: 12px 10px;
-
       text-align: left;
-
       font-size: 14px;
-
       vertical-align: middle;
     }
 
@@ -302,59 +217,40 @@
       color: #475569;
     }
 
-    td {
-      overflow: hidden;
-    }
+    td { overflow: hidden; }
 
-    .input-table td:nth-child(1) {
-      width: 42%;
-    }
-
-    .input-table td:nth-child(2) {
-      width: 28%;
-    }
-
-    .input-table td:nth-child(3) {
-      width: 30%;
-    }
+    .input-table td:nth-child(1) { width: 42%; }
+    .input-table td:nth-child(2) { width: 28%; }
+    .input-table td:nth-child(3) { width: 30%; }
 
     .name-cell {
       font-weight: 900;
       word-break: break-all;
     }
 
-    .score-input {
-      width: 100%;
+    .score-input { width: 100%; }
+
+    .pill {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ecfeff;
+      color: #155e75;
+      padding: 0 28px;
+      border-radius: 999px;
+      font-size: 24px;
+      font-weight: 900;
+      min-width: 120px;
+      height: 72px;
+      line-height: 1;
+      white-space: nowrap;
     }
-
-.pill {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: #ecfeff;
-  color: #155e75;
-
-  padding: 0 28px;
-  border-radius: 999px;
-
-  font-size: 24px;
-  font-weight: 900;
-
-  min-width: 120px;
-  height: 72px;
-
-  line-height: 1;
-  white-space: nowrap;
-}
 
     .section-head {
       display: flex;
       justify-content: space-between;
       align-items: center;
-
       margin-bottom: 12px;
-
       gap: 12px;
     }
 
@@ -385,10 +281,6 @@
       line-height: 1.6;
     }
 
-    /* =========================
-       SPECIAL
-    ========================= */
-
     .special-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -398,11 +290,8 @@
 
     .special-box {
       background: white;
-
       border-radius: 18px;
-
       padding: 16px;
-
       border: 1px solid var(--line);
     }
 
@@ -434,10 +323,6 @@
       font-weight: 800;
     }
 
-    /* =========================
-       RESULT
-    ========================= */
-
     .result-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -447,26 +332,19 @@
 
     .team-box {
       background: white;
-
       border: 1px solid var(--line);
-
       border-radius: 18px;
-
       padding: 16px;
     }
 
     .team-box h3 {
       margin: 0 0 14px;
-
       min-height: 28px;
-
       display: flex;
       align-items: center;
     }
 
-    .team-box .winner-label {
-      margin-bottom: 10px;
-    }
+    .team-box .winner-label { margin-bottom: 10px; }
 
     .team-box:not(.winner)::before {
       content: "";
@@ -477,24 +355,17 @@
 
     .winner {
       border-color: #86efac;
-
-      box-shadow:
-        0 0 0 4px rgba(22,163,74,.12);
+      box-shadow: 0 0 0 4px rgba(22,163,74,.12);
     }
 
     .winner-label {
       display: inline-flex;
-
       background: #dcfce7;
       color: #166534;
-
       padding: 6px 10px;
-
       border-radius: 999px;
-
       font-size: 13px;
       font-weight: 900;
-
       margin-bottom: 10px;
     }
 
@@ -512,75 +383,50 @@
 
     .result-card {
       background: #f8fafc;
-
       border: 1px solid var(--line);
-
       border-radius: 18px;
-
       padding: 16px;
-
       margin-top: 14px;
     }
 
-@media (max-width: 920px) {
+    @media (max-width: 920px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
 
-  .grid {
-    grid-template-columns: 1fr;
-  }
+      .hero h1 {
+        font-size: 24px;
+      }
 
-  .hero h1 {
-    font-size: 24px;
-  }
+      .hero-logo {
+        width: 48px;
+        height: 48px;
+      }
 
-  .hero-logo {
-    width: 48px;
-    height: 48px;
-  }
-
-  .result-grid,
-  .special-grid {
-    grid-template-columns: 1fr;
-  }
-
-}
-
-
-
+      .result-grid,
+      .special-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
-
-
 </head>
 
 <body>
 
 <div class="wrap">
 
-  <!-- TOP TAB -->
-
   <div class="top-tabs">
-
-    <a
-      href="/"
-      class="tab-btn active"
-    >
+    <a href="/" class="tab-btn active">
       덕몽어스
     </a>
 
-    <a
-      href="/rating.html"
-      class="tab-btn"
-    >
+    <a href="/rating.html" class="tab-btn">
       캄푸평점
     </a>
-
   </div>
 
-  <!-- HERO -->
-
   <section class="hero">
-
     <div class="hero-title">
-
       <img
         class="hero-logo"
         src="https://i.namu.wiki/i/2MezOuRVaXA9wmpXfo_cRrZOgYwVNV3RCshjTkarjhpvR0JdlBF6CREXT_3tnRVgYVewwGNcW-ysl2fRs0VGWk50WgH7z6iTN5VHxzNzkiWl1-Qoame_PUvi6WnPGHbU65L3xH_aogqOQuEULPhz1A.webp"
@@ -588,31 +434,22 @@
       />
 
       <h1>덕몽어스 계산기</h1>
-
     </div>
 
     <p>
       참가자 이름 등록 → 게임 진행 → 점수 입력 → 핀볼 순서 입력 후 팀 합계를 계산합니다.
     </p>
-
   </section>
-
-  <!-- GRID -->
 
   <div class="grid">
 
-    <!-- LEFT -->
-
     <section class="card">
-
       <div class="section-head">
-
         <h2>참가자 등록</h2>
 
         <span id="countPill" class="pill">
           0명
         </span>
-
       </div>
 
       <label for="personName">
@@ -645,7 +482,6 @@
       <div id="personArea"></div>
 
       <div class="toolbar">
-
         <button
           class="btn-light"
           onclick="downloadCSV()"
@@ -659,26 +495,20 @@
         >
           전체 초기화
         </button>
-
       </div>
-
     </section>
 
-    <!-- RIGHT -->
-
     <section class="card">
-
       <div class="section-head">
-
         <h2>팀 합계 결과</h2>
 
         <span id="resultPill" class="pill">
           계산 전
         </span>
-
       </div>
 
       <div id="specialArea"></div>
+      <div id="tieSelectArea"></div>
 
       <label for="pinballOrder">
         핀볼 순서 입력
@@ -690,7 +520,7 @@
       ></textarea>
 
       <p class="help">
-        1등과 꼴등을 제외한 참가자 이름만 입력해주세요.
+        최종 1등과 최종 꼴등을 제외한 참가자 이름만 입력해주세요.
       </p>
 
       <button
@@ -703,85 +533,55 @@
       <div id="calcMessage" class="ok"></div>
 
       <div id="resultArea"></div>
-
     </section>
 
   </div>
-
 </div>
 
 <script>
+const STORAGE_KEY = "duckmong-us-v1";
 
-const STORAGE_KEY =
-  "duckmong-us-v1";
-
-let people =
-  loadPeople();
+let people = loadPeople();
 
 function loadPeople() {
-
   try {
-
     return JSON.parse(
       localStorage.getItem(STORAGE_KEY)
     ) || [];
-
   } catch {
-
     return [];
-
   }
-
 }
 
 function savePeople() {
-
   localStorage.setItem(
     STORAGE_KEY,
     JSON.stringify(people)
   );
-
 }
 
 function escapeHTML(str) {
-
   return String(str)
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;");
-
 }
 
 function addPerson() {
+  const input = document.getElementById("personName");
+  const error = document.getElementById("addError");
 
-  const input =
-    document.getElementById("personName");
-
-  const error =
-    document.getElementById("addError");
-
-  const name =
-    input.value.trim();
+  const name = input.value.trim();
 
   if (!name) {
-
-    error.textContent =
-      "참가자 이름을 입력해주세요.";
-
+    error.textContent = "참가자 이름을 입력해주세요.";
     return;
-
   }
 
-  if (
-    people.some(p => p.name === name)
-  ) {
-
-    error.textContent =
-      "이미 등록된 참가자입니다.";
-
+  if (people.some(p => p.name === name)) {
+    error.textContent = "이미 등록된 참가자입니다.";
     return;
-
   }
 
   people.push({
@@ -797,56 +597,41 @@ function addPerson() {
 
   renderPeople();
   renderSpecial();
-
 }
 
 function updateScore(id, value) {
-
-  const person =
-    people.find(p => p.id === id);
+  const person = people.find(p => p.id === id);
 
   if (person) {
-
     person.score = value;
-
     savePeople();
-
   }
 
   renderSpecial();
 
+  document.getElementById("resultArea").innerHTML = "";
+  document.getElementById("resultPill").textContent = "계산 전";
+  document.getElementById("calcMessage").textContent = "";
 }
 
 function deletePerson(id) {
-
   if (!confirm("삭제할까요?")) {
     return;
   }
 
-  people =
-    people.filter(p => p.id !== id);
+  people = people.filter(p => p.id !== id);
 
   savePeople();
 
   renderPeople();
   renderSpecial();
 
-  document.getElementById(
-    "resultArea"
-  ).innerHTML = "";
-
-  document.getElementById(
-    "resultPill"
-  ).textContent = "계산 전";
-
-  document.getElementById(
-    "calcMessage"
-  ).textContent = "";
-
+  document.getElementById("resultArea").innerHTML = "";
+  document.getElementById("resultPill").textContent = "계산 전";
+  document.getElementById("calcMessage").textContent = "";
 }
 
 function getValidPeople() {
-
   return people
     .filter(p =>
       p.score !== "" &&
@@ -856,16 +641,12 @@ function getValidPeople() {
       ...p,
       score: Number(p.score)
     }));
-
 }
 
 function getRanking() {
-
-  const valid =
-    getValidPeople();
+  const valid = getValidPeople();
 
   return [...valid].sort((a,b) => {
-
     if (b.score !== a.score) {
       return b.score - a.score;
     }
@@ -874,38 +655,26 @@ function getRanking() {
       b.name,
       "ko"
     );
-
   });
-
 }
 
 function renderPeople() {
+  const area = document.getElementById("personArea");
 
-  const area =
-    document.getElementById(
-      "personArea"
-    );
-
-  document.getElementById(
-    "countPill"
-  ).textContent =
+  document.getElementById("countPill").textContent =
     `${people.length}명`;
 
   if (!people.length) {
-
     area.innerHTML = `
       <div class="empty">
         아직 등록된 참가자가 없습니다.
       </div>
     `;
-
     return;
-
   }
 
   const rows = people.map(person => `
     <tr>
-
       <td class="name-cell">
         ${escapeHTML(person.name)}
       </td>
@@ -928,15 +697,12 @@ function renderPeople() {
           삭제
         </button>
       </td>
-
     </tr>
   `).join("");
 
   area.innerHTML = `
     <div class="table-scroll">
-
       <table class="input-table">
-
         <thead>
           <tr>
             <th>참가자</th>
@@ -948,147 +714,185 @@ function renderPeople() {
         <tbody>
           ${rows}
         </tbody>
-
       </table>
-
     </div>
   `;
-
 }
 
 function renderSpecial() {
+  const area = document.getElementById("specialArea");
+  const tieArea = document.getElementById("tieSelectArea");
 
-  const area =
-    document.getElementById(
-      "specialArea"
-    );
+  const ranking = getRanking();
 
-  const ranking =
-    getRanking();
+  tieArea.innerHTML = "";
 
   if (
     ranking.length !== people.length ||
     people.length < 2
   ) {
-
     area.innerHTML = `
       <div class="empty">
         모든 참가자의 점수를 입력하면
         1등과 꼴등이 표시됩니다.
       </div>
     `;
-
     return;
-
   }
 
-  const first = ranking[0];
-  const last =
-    ranking[ranking.length - 1];
+  const topScore = ranking[0].score;
+  const bottomScore = ranking[ranking.length - 1].score;
+
+  const firstList = ranking.filter(p => p.score === topScore);
+  const lastList = ranking.filter(p => p.score === bottomScore);
 
   area.innerHTML = `
-
     <div class="special-grid">
-
       <div class="special-box first">
-
         <div class="special-title">
-          1등
+          1등 후보
         </div>
 
         <div class="special-name">
-          ${escapeHTML(first.name)}
+          ${firstList.map(p => escapeHTML(p.name)).join("<br />")}
         </div>
 
         <div class="special-score">
-          ${first.score}점
+          ${topScore}점
         </div>
-
       </div>
 
       <div class="special-box last">
-
         <div class="special-title">
-          꼴등
+          꼴등 후보
         </div>
 
         <div class="special-name">
-          ${escapeHTML(last.name)}
+          ${lastList.map(p => escapeHTML(p.name)).join("<br />")}
         </div>
 
         <div class="special-score">
-          ${last.score}점
+          ${bottomScore}점
         </div>
-
       </div>
-
     </div>
-
   `;
 
+  if (topScore === bottomScore) {
+    tieArea.innerHTML = `
+      <div class="result-card">
+        모든 점수가 같으면 최종 1등과 꼴등을 구분할 수 없습니다.
+      </div>
+    `;
+    return;
+  }
+
+  const firstOptions = firstList.map(p => `
+    <option value="${p.id}">
+      ${escapeHTML(p.name)}
+    </option>
+  `).join("");
+
+  const lastOptions = lastList.map(p => `
+    <option value="${p.id}">
+      ${escapeHTML(p.name)}
+    </option>
+  `).join("");
+
+  tieArea.innerHTML = `
+    <div class="result-card">
+      <label for="selectedFirst">
+        최종 1등 선택
+      </label>
+
+      <select id="selectedFirst">
+        ${firstOptions}
+      </select>
+
+      <label for="selectedLast" style="margin-top:14px;">
+        최종 꼴등 선택
+      </label>
+
+      <select id="selectedLast">
+        ${lastOptions}
+      </select>
+    </div>
+  `;
 }
 
 function parseOrder(text) {
-
   return String(text || "")
     .split(",")
     .map(v => v.trim())
     .filter(Boolean);
-
 }
 
 function calculateTeams() {
-
-  const message =
-    document.getElementById(
-      "calcMessage"
-    );
+  const message = document.getElementById("calcMessage");
 
   message.className = "error";
   message.textContent = "";
 
   if (people.length < 4) {
-
-    message.textContent =
-      "최소 4명 이상 필요합니다.";
-
+    message.textContent = "최소 4명 이상 필요합니다.";
     return;
-
   }
 
   if (people.length % 2 !== 0) {
-
-    message.textContent =
-      "참가자 수는 짝수여야 합니다.";
-
+    message.textContent = "참가자 수는 짝수여야 합니다.";
     return;
-
   }
 
-  const ranking =
-    getRanking();
+  const ranking = getRanking();
 
   if (ranking.length !== people.length) {
-
-    message.textContent =
-      "모든 참가자의 점수를 입력해주세요.";
-
+    message.textContent = "모든 참가자의 점수를 입력해주세요.";
     return;
-
   }
 
-  const first = ranking[0];
+  const topScore = ranking[0].score;
+  const bottomScore = ranking[ranking.length - 1].score;
 
-  const last =
-    ranking[ranking.length - 1];
-
-  if (first.score === last.score) {
-
+  if (topScore === bottomScore) {
     message.textContent =
       "모든 점수가 같으면 1등과 꼴등을 구분할 수 없습니다.";
-
     return;
+  }
 
+  const firstCandidates =
+    ranking.filter(p => p.score === topScore);
+
+  const lastCandidates =
+    ranking.filter(p => p.score === bottomScore);
+
+  let first = firstCandidates[0];
+  let last = lastCandidates[0];
+
+  const firstSelect = document.getElementById("selectedFirst");
+  const lastSelect = document.getElementById("selectedLast");
+
+  if (firstSelect) {
+    first = ranking.find(
+      p => p.id === Number(firstSelect.value)
+    );
+  }
+
+  if (lastSelect) {
+    last = ranking.find(
+      p => p.id === Number(lastSelect.value)
+    );
+  }
+
+  if (!first || !last) {
+    message.textContent =
+      "최종 1등과 꼴등을 선택해주세요.";
+    return;
+  }
+
+  if (first.id === last.id) {
+    message.textContent =
+      "1등과 꼴등이 같은 사람일 수 없습니다.";
+    return;
   }
 
   const remaining =
@@ -1101,20 +905,13 @@ function calculateTeams() {
 
   const orderNames =
     parseOrder(
-      document.getElementById(
-        "pinballOrder"
-      ).value
+      document.getElementById("pinballOrder").value
     );
 
-  if (
-    orderNames.length !== remaining.length
-  ) {
-
+  if (orderNames.length !== remaining.length) {
     message.textContent =
-      `핀볼 순서는 ${remaining.length}명을 입력해야 합니다.`;
-
+      `핀볼 순서는 ${remaining.length}명을 입력해야 합니다. 현재 ${orderNames.length}명 입력되었습니다.`;
     return;
-
   }
 
   const map =
@@ -1125,45 +922,33 @@ function calculateTeams() {
   const used = new Set();
 
   for (const name of orderNames) {
-
     if (!map.has(name)) {
-
       message.textContent =
         `"${name}"은 핀볼 대상자가 아닙니다.`;
-
       return;
-
     }
 
     if (used.has(name)) {
-
       message.textContent =
         `"${name}"이 중복 입력되었습니다.`;
-
       return;
-
     }
 
     used.add(name);
-
   }
 
   const ordered =
-    orderNames.map(name =>
-      map.get(name)
-    );
+    orderNames.map(name => map.get(name));
 
   const oddTeam = [];
   const evenTeam = [];
 
   ordered.forEach((person, index) => {
-
     if (index % 2 === 0) {
       oddTeam.push(person);
     } else {
       evenTeam.push(person);
     }
-
   });
 
   const oddTotal =
@@ -1188,17 +973,13 @@ function calculateTeams() {
     winner = "짝팀";
   }
 
-  document.getElementById(
-    "resultPill"
-  ).textContent =
+  document.getElementById("resultPill").textContent =
     winner === "무승부"
       ? "무승부"
       : `${winner} 승리`;
 
   message.className = "ok";
-
-  message.textContent =
-    "계산 완료!";
+  message.textContent = "계산 완료!";
 
   renderResult({
     first,
@@ -1209,11 +990,9 @@ function calculateTeams() {
     evenTotal,
     winner
   });
-
 }
 
 function renderMemberList(team) {
-
   if (!team.length) {
     return "-";
   }
@@ -1224,25 +1003,45 @@ function renderMemberList(team) {
       (${person.score}점)
     `;
   }).join("<br />");
-
 }
 
 function renderResult(result) {
+  const oddWin = result.winner === "홀팀";
+  const evenWin = result.winner === "짝팀";
 
-  const oddWin =
-    result.winner === "홀팀";
+  document.getElementById("resultArea").innerHTML = `
+    <div class="special-grid">
+      <div class="special-box first">
+        <div class="special-title">
+          최종 1등
+        </div>
 
-  const evenWin =
-    result.winner === "짝팀";
+        <div class="special-name">
+          ${escapeHTML(result.first.name)}
+        </div>
 
-  document.getElementById(
-    "resultArea"
-  ).innerHTML = `
+        <div class="special-score">
+          ${result.first.score}점
+        </div>
+      </div>
+
+      <div class="special-box last">
+        <div class="special-title">
+          최종 꼴등
+        </div>
+
+        <div class="special-name">
+          ${escapeHTML(result.last.name)}
+        </div>
+
+        <div class="special-score">
+          ${result.last.score}점
+        </div>
+      </div>
+    </div>
 
     <div class="result-grid">
-
       <div class="team-box ${oddWin ? "winner" : ""}">
-
         ${oddWin
           ? '<div class="winner-label">승리팀</div>'
           : ""
@@ -1257,11 +1056,9 @@ function renderResult(result) {
         <div class="member-list">
           ${renderMemberList(result.oddTeam)}
         </div>
-
       </div>
 
       <div class="team-box ${evenWin ? "winner" : ""}">
-
         ${evenWin
           ? '<div class="winner-label">승리팀</div>'
           : ""
@@ -1276,40 +1073,30 @@ function renderResult(result) {
         <div class="member-list">
           ${renderMemberList(result.evenTeam)}
         </div>
-
       </div>
-
     </div>
 
     <div class="result-card">
-
       <strong>최종 결과:</strong>
-
       ${
         result.winner === "무승부"
           ? "홀팀과 짝팀이 무승부입니다."
           : `${result.winner}이 승리했습니다.`
       }
-
     </div>
-
   `;
-
 }
 
 function downloadCSV() {
-
   const lines = [
     ["이름","점수"].join(",")
   ];
 
   people.forEach(person => {
-
     lines.push([
       `"${person.name}"`,
       person.score
     ].join(","));
-
   });
 
   const blob =
@@ -1328,51 +1115,30 @@ function downloadCSV() {
     document.createElement("a");
 
   a.href = url;
-
-  a.download =
-    "duckmong-result.csv";
-
+  a.download = "duckmong-result.csv";
   a.click();
 
   URL.revokeObjectURL(url);
-
 }
 
 function resetAll() {
-
   if (!confirm("전체 초기화할까요?")) {
     return;
   }
 
   people = [];
 
-  localStorage.removeItem(
-    STORAGE_KEY
-  );
+  localStorage.removeItem(STORAGE_KEY);
 
-  document.getElementById(
-    "pinballOrder"
-  ).value = "";
-
-  document.getElementById(
-    "resultArea"
-  ).innerHTML = "";
-
-  document.getElementById(
-    "specialArea"
-  ).innerHTML = "";
-
-  document.getElementById(
-    "calcMessage"
-  ).textContent = "";
-
-  document.getElementById(
-    "resultPill"
-  ).textContent = "계산 전";
+  document.getElementById("pinballOrder").value = "";
+  document.getElementById("resultArea").innerHTML = "";
+  document.getElementById("specialArea").innerHTML = "";
+  document.getElementById("tieSelectArea").innerHTML = "";
+  document.getElementById("calcMessage").textContent = "";
+  document.getElementById("resultPill").textContent = "계산 전";
 
   renderPeople();
   renderSpecial();
-
 }
 
 document
@@ -1380,17 +1146,14 @@ document
   .addEventListener(
     "keydown",
     event => {
-
       if (event.key === "Enter") {
         addPerson();
       }
-
     }
   );
 
 renderPeople();
 renderSpecial();
-
 </script>
 
 </body>
