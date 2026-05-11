@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>캄푸평점 랭킹보드</title>
+
+  <link
+    rel="icon"
+    type="image/webp"
+    href="https://i.namu.wiki/i/2MezOuRVaXA9wmpXfo_cRrZOgYwVNV3RCshjTkarjhpvR0JdlBF6CREXT_3tnRVgYVewwGNcW-ysl2fRs0VGWk50WgH7z6iTN5VHxzNzkiWl1-Qoame_PUvi6WnPGHbU65L3xH_aogqOQuEULPhz1A.webp"
+  />
+
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #171923;
+      --muted: #718096;
+      --line: #e2e8f0;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --danger: #dc2626;
+      --success: #16a34a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+.wrap {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 28px 24px 60px;
+}
+.top-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 22px;
+  border-radius: 16px;
+  background: white;
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 900;
+  text-decoration: none;
+  transition: all .15s ease;
+  box-shadow: 0 6px 18px rgba(15,23,42,.05);
+}
+
+.tab-btn:hover {
+  transform: translateY(-1px);
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, #1d4ed8, #7c3aed);
+  color: white;
+  border-color: transparent;
+}
+
+    .hero {
+      background: linear-gradient(135deg, #1d4ed8, #7c3aed);
+      color: white;
+      padding: 28px;
+      border-radius: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 18px 40px rgba(37,99,235,.22);
+    }
+
+    .hero-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .hero-logo {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    .hero p {
+      margin: 0;
+      line-height: 1.6;
+      opacity: 0.92;
+    }
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(620px, 1fr) minmax(620px, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.card {
+  min-width: 0;
+}
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 30px rgba(15,23,42,.05);
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      font-weight: 800;
+      margin: 14px 0 8px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 13px 14px;
+      font-size: 15px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 14px;
+      padding: 11px 14px;
+      font-weight: 900;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-danger {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+
+    .btn-light {
+      background: #eef2ff;
+      color: #3730a3;
+    }
+
+    .btn-full {
+      width: 100%;
+      margin-top: 14px;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar > * {
+      flex: 1;
+    }
+
+    .table-scroll {
+      overflow-x: auto;
+    }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 0;
+}
+
+.input-table {
+  min-width: 520px;
+  table-layout: fixed;
+}
+
+    th,
+    td {
+      border-bottom: 1px solid var(--line);
+      padding: 12px 10px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      background: #f8fafc;
+      color: #475569;
+    }
+
+.score-input {
+  width: 100%;
+  min-width: 0;
+}
+
+    .name-cell {
+      font-weight: 900;
+    }
+
+    .help {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .error {
+      color: var(--danger);
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .ok {
+      color: var(--success);
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .rank {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      background: #e2e8f0;
+    }
+
+    .rank-1 {
+      background: #fef3c7;
+    }
+
+    .rank-2 {
+      background: #e2e8f0;
+    }
+
+    .rank-3 {
+      background: #ffedd5;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      background: #ecfeff;
+      color: #155e75;
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .ranking-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      gap: 12px;
+    }
+
+.row-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+td {
+  overflow: hidden;
+}
+
+.input-table td:nth-child(1) {
+  width: 22%;
+}
+
+.input-table td:nth-child(2) {
+  width: 56%;
+}
+
+.input-table td:nth-child(3) {
+  width: 22%;
+}
+
+    .empty {
+      text-align: center;
+      color: var(--muted);
+      padding: 26px 0;
+      line-height: 1.6;
+    }
+
+@media (max-width: 920px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+      .hero h1 {
+        font-size: 24px;
+      }
+
+      .hero-logo {
+        width: 48px;
+        height: 48px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <div class="top-tabs">
+    <a href="/index.html" class="tab-btn">
+      덕몽어스
+    </a>
+
+    <a href="/rating.html" class="tab-btn active">
+      암푸평점
+    </a>
+  </div>
+
+  <section class="hero">
+<div class="hero-title">
+
+  <img
+    class="hero-logo"
+    src="https://i.namu.wiki/i/2MezOuRVaXA9wmpXfo_cRrZOgYwVNV3RCshjTkarjhpvR0JdlBF6CREXT_3tnRVgYVewwGNcW-ysl2fRs0VGWk50WgH7z6iTN5VHxzNzkiWl1-Qoame_PUvi6WnPGHbU65L3xH_aogqOQuEULPhz1A.webp"
+    alt="로고"
+  />
+
+  <h1>캄푸평점 랭킹보드</h1>
+
+</div>
+
+    <p>
+      학생별 점수를 입력 후 계산하기를 누르면 우측 랭킹란에 결과가 표시됩니다.
+    </p>
+  </section>
+
+  <div class="grid">
+
+    <section class="card">
+
+      <h2>학생 추가</h2>
+
+      <label>학생 이름</label>
+
+      <input
+        id="playerName"
+        placeholder="예) 비타밍"
+        autocomplete="off"
+      />
+
+      <button
+        class="btn-primary btn-full"
+        onclick="addPlayer()"
+      >
+        학생 추가하기
+      </button>
+
+      <div id="addError" class="error"></div>
+
+      <h2 style="margin-top:28px;">점수 입력란</h2>
+
+      <p class="help">
+        예) 6, 7, 8, 3 (최대 10점까지 입력 가능)
+      </p>
+
+      <div id="inputArea"></div>
+
+      <div class="toolbar">
+        <button class="btn-light" onclick="downloadCSV()">
+          CSV 다운로드
+        </button>
+
+        <button class="btn-danger" onclick="resetAll()">
+          전체 초기화
+        </button>
+      </div>
+
+    </section>
+
+    <section class="card">
+
+      <div class="ranking-head">
+        <h2>누구 순위가 높을까?</h2>
+
+        <span id="rankingPill" class="pill">
+          계산 전
+        </span>
+      </div>
+
+      <label>랭킹 정렬</label>
+
+      <select
+        id="sortMode"
+        onchange="rerenderRankingWithSelectedSort()"
+      >
+        <option value="total">합산순</option>
+        <option value="average">평균 높은순</option>
+      </select>
+
+      <div id="calcMessage" class="ok"></div>
+
+      <div id="rankingArea"></div>
+
+    </section>
+
+  </div>
+</div>
+
+<script>
+
+const STORAGE_KEY = "campu-ranking-final";
+const RANKING_KEY = "campu-ranking-final-ranking";
+
+let players = loadPlayers();
+let lastRanking = loadRanking();
+let lastSortMode =
+  localStorage.getItem("campu-ranking-final-sort")
+  || "total";
+
+function loadPlayers() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  } catch {
+    return [];
+  }
+}
+
+function loadRanking() {
+  try {
+    return JSON.parse(localStorage.getItem(RANKING_KEY)) || [];
+  } catch {
+    return [];
+  }
+}
+
+function savePlayers() {
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(players)
+  );
+}
+
+function saveRanking() {
+  localStorage.setItem(
+    RANKING_KEY,
+    JSON.stringify(lastRanking)
+  );
+
+  localStorage.setItem(
+    "campu-ranking-final-sort",
+    lastSortMode
+  );
+}
+
+function escapeHTML(str) {
+  return String(str)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;");
+}
+
+function parseScores(raw) {
+
+  const text = String(raw || "").trim();
+
+  if (!text) {
+    return {
+      scores: [],
+      error: ""
+    };
+  }
+
+  const parts =
+    text
+      .split(",")
+      .map(v => v.trim())
+      .filter(Boolean);
+
+  const scores = [];
+
+  for (const part of parts) {
+
+    if (!/^\d+(\.\d+)?$/.test(part)) {
+      return {
+        scores: [],
+        error: "숫자와 쉼표만 입력해주세요."
+      };
+    }
+
+    const value = Number(part);
+
+    if (value < 1 || value > 10) {
+      return {
+        scores: [],
+        error: "점수는 1~10점만 가능합니다."
+      };
+    }
+
+    scores.push(value);
+  }
+
+  return {
+    scores,
+    error: ""
+  };
+}
+
+function getStats(scoreText) {
+
+  const parsed = parseScores(scoreText);
+
+  const total =
+    parsed.scores.reduce(
+      (sum, value) => sum + value,
+      0
+    );
+
+  const count = parsed.scores.length;
+
+  const average =
+    count ? total / count : 0;
+
+  const highScoreCount =
+    parsed.scores.filter(
+      score => score === 10
+    ).length;
+
+  return {
+    ...parsed,
+    total,
+    count,
+    average,
+    highScoreCount
+  };
+}
+
+function addPlayer() {
+
+  const input =
+    document.getElementById("playerName");
+
+  const error =
+    document.getElementById("addError");
+
+  const name =
+    input.value.trim();
+
+  if (!name) {
+    error.textContent =
+      "학생 이름을 입력해주세요.";
+    return;
+  }
+
+  if (players.some(p => p.name === name)) {
+    error.textContent =
+      "이미 등록된 학생입니다.";
+    return;
+  }
+
+  players.push({
+    id: Date.now(),
+    name,
+    scoreText: ""
+  });
+
+  savePlayers();
+
+  input.value = "";
+  error.textContent = "";
+
+  renderInputArea();
+
+  document.getElementById("calcMessage")
+    .textContent =
+      "학생가 추가되었습니다.";
+}
+
+function updateScore(id, value) {
+
+  const player =
+    players.find(p => p.id === id);
+
+  if (player) {
+    player.scoreText = value;
+    savePlayers();
+  }
+}
+
+function deletePlayer(id) {
+
+  if (!confirm("삭제할까요?")) {
+    return;
+  }
+
+  // 왼쪽 데이터 삭제
+  players = players.filter(
+    p => p.id !== id
+  );
+
+  // 우측 랭킹 데이터에서도 삭제
+  lastRanking = lastRanking.filter(
+    p => p.id !== id
+  );
+
+  savePlayers();
+  saveRanking();
+
+  // 화면 다시 렌더링
+  renderInputArea();
+
+  if (lastRanking.length) {
+    renderRanking(lastRanking);
+  } else {
+    renderRanking([]);
+    document.getElementById("rankingPill")
+      .textContent = "계산 전";
+  }
+}
+
+function syncInputsToData() {
+
+  document
+    .querySelectorAll("[data-score-input]")
+    .forEach(input => {
+
+      const id =
+        Number(input.dataset.playerId);
+
+      const player =
+        players.find(p => p.id === id);
+
+      if (player) {
+        player.scoreText = input.value;
+      }
+    });
+
+  savePlayers();
+}
+
+function comparePlayers(a,b,sortMode) {
+
+  if (sortMode === "total") {
+
+    if (b.stats.total !== a.stats.total) {
+      return b.stats.total - a.stats.total;
+    }
+
+    if (b.stats.average !== a.stats.average) {
+      return b.stats.average - a.stats.average;
+    }
+
+  } else {
+
+    if (b.stats.average !== a.stats.average) {
+      return b.stats.average - a.stats.average;
+    }
+
+    if (b.stats.total !== a.stats.total) {
+      return b.stats.total - a.stats.total;
+    }
+  }
+
+  return (
+    b.stats.highScoreCount
+    - a.stats.highScoreCount
+  );
+}
+
+function calculateRanking() {
+
+  syncInputsToData();
+
+  const sortMode =
+    document.getElementById("sortMode").value;
+
+  lastSortMode = sortMode;
+
+  lastRanking =
+    players
+      .map(player => ({
+        ...player,
+        stats: getStats(player.scoreText)
+      }))
+      .sort((a,b)=>
+        comparePlayers(a,b,sortMode)
+      );
+
+  saveRanking();
+
+  renderRanking(lastRanking);
+
+  document.getElementById("calcMessage")
+    .textContent =
+      "계산 완료!";
+
+  document.getElementById("rankingPill")
+    .textContent =
+      sortMode === "total"
+      ? "합산순"
+      : "평균 높은순";
+}
+
+function rerenderRankingWithSelectedSort() {
+
+  const sortMode =
+    document.getElementById("sortMode").value;
+
+  lastSortMode = sortMode;
+
+  if (!lastRanking.length) {
+    return;
+  }
+
+  lastRanking =
+    [...lastRanking]
+      .sort((a,b)=>
+        comparePlayers(a,b,sortMode)
+      );
+
+  saveRanking();
+
+  renderRanking(lastRanking);
+
+  document.getElementById("rankingPill")
+    .textContent =
+      sortMode === "total"
+      ? "합산순"
+      : "평균 높은순";
+}
+
+function renderInputArea() {
+
+  const area =
+    document.getElementById("inputArea");
+
+  if (!players.length) {
+
+    area.innerHTML = `
+      <div class="empty">
+        아직 등록된 학생가 없습니다.
+      </div>
+    `;
+
+    return;
+  }
+
+  const rows =
+    players.map(player => `
+
+      <tr>
+
+        <td class="name-cell">
+          ${escapeHTML(player.name)}
+        </td>
+
+        <td>
+          <input
+            class="score-input"
+            value="${escapeHTML(player.scoreText)}"
+            placeholder="예) 6, 7, 8, 3"
+            data-score-input
+            data-player-id="${player.id}"
+            oninput="updateScore(${player.id}, this.value)"
+          />
+        </td>
+
+        <td>
+          <div class="row-actions">
+
+            <button
+              class="btn-success"
+              onclick="calculateRanking()"
+            >
+              계산하기
+            </button>
+
+            <button
+              class="btn-danger"
+              onclick="deletePlayer(${player.id})"
+            >
+              삭제
+            </button>
+
+          </div>
+        </td>
+
+      </tr>
+
+    `).join("");
+
+  area.innerHTML = `
+
+    <div class="table-scroll">
+
+<table class="input-table">
+
+        <thead>
+          <tr>
+            <th>학생</th>
+            <th>점수 입력</th>
+            <th>관리</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${rows}
+        </tbody>
+
+      </table>
+
+    </div>
+
+  `;
+}
+
+function renderRanking(ranking) {
+
+  const area =
+    document.getElementById("rankingArea");
+
+  if (!ranking.length) {
+
+    area.innerHTML = `
+      <div class="empty">
+        아직 계산된 랭킹이 없습니다.
+      </div>
+    `;
+
+    return;
+  }
+
+  const rows =
+    ranking.map((player,index)=>{
+
+      const rank = index + 1;
+
+      const rankClass =
+        rank <= 3
+        ? `rank-${rank}`
+        : "";
+
+      const s = player.stats;
+
+      return `
+
+        <tr>
+
+          <td>
+            <span class="rank ${rankClass}">
+              ${rank}
+            </span>
+          </td>
+
+          <td class="name-cell">
+            ${escapeHTML(player.name)}
+          </td>
+
+          <td>${s.total}</td>
+
+          <td>${s.average.toFixed(2)}</td>
+
+          <td>${s.count}명</td>
+
+        </tr>
+
+      `;
+    }).join("");
+
+  area.innerHTML = `
+
+    <div class="table-scroll">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>순위</th>
+            <th>학생</th>
+            <th>총점</th>
+            <th>평균</th>
+            <th>평가자 수</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          ${rows}
+        </tbody>
+
+      </table>
+
+    </div>
+
+  `;
+}
+
+function downloadCSV() {
+
+  const ranking =
+    lastRanking.length
+    ? lastRanking
+    : [];
+
+  const lines = [
+    [
+      "순위",
+      "학생명",
+      "총점",
+      "평균"
+    ].join(",")
+  ];
+
+  ranking.forEach((player,index)=>{
+
+    lines.push([
+      index + 1,
+      `"${player.name}"`,
+      player.stats.total,
+      player.stats.average.toFixed(2)
+    ].join(","));
+
+  });
+
+  const blob =
+    new Blob(
+      ['\ufeff' + lines.join('\n')],
+      { type: 'text/csv;charset=utf-8;' }
+    );
+
+  const url =
+    URL.createObjectURL(blob);
+
+  const a =
+    document.createElement("a");
+
+  a.href = url;
+  a.download = "campu-ranking.csv";
+  a.click();
+
+  URL.revokeObjectURL(url);
+}
+
+function resetAll() {
+
+  if (!confirm("전체 초기화할까요?")) {
+    return;
+  }
+
+  players = [];
+  lastRanking = [];
+
+  savePlayers();
+  saveRanking();
+
+  renderInputArea();
+  renderRanking([]);
+
+  document.getElementById("rankingPill")
+    .textContent = "계산 전";
+
+  document.getElementById("calcMessage")
+    .textContent = "";
+}
+
+document
+  .getElementById("playerName")
+  .addEventListener("keydown", e => {
+
+    if (e.key === "Enter") {
+      addPlayer();
+    }
+  });
+
+document.getElementById("sortMode").value =
+  lastSortMode;
+
+renderInputArea();
+
+if (lastRanking.length) {
+  renderRanking(lastRanking);
+
+  document.getElementById("rankingPill")
+    .textContent =
+      lastSortMode === "total"
+      ? "합산순"
+      : "평균 높은순";
+} else {
+  renderRanking([]);
+}
+
+</script>
+
+</body>
+</html>
