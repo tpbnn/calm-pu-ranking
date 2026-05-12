@@ -98,6 +98,7 @@ body{
 h2{
   margin:0;
   font-size:22px;
+  line-height:1;
 }
 
 input{
@@ -107,6 +108,8 @@ input{
   padding:13px 14px;
   font-size:15px;
   outline:none;
+
+  margin-top:14px;
 }
 
 button{
@@ -183,13 +186,32 @@ button{
   font-size:12px;
 }
 
-.status{
-  padding:14px 16px;
-  border-radius:16px;
+.table-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:50px;
+  margin-bottom:18px;
+}
+
+.table-status{
+  flex:1;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  min-height:35px;
+
+  padding:0 20px;
+  border-radius:22px;
+
   background:#eff6ff;
   color:#1e40af;
-  font-weight:900;
-  margin-bottom:16px;
+
+  font-size:14px;
+  font-weight:800;
+
   text-align:center;
 }
 
@@ -321,6 +343,7 @@ button{
   display:flex;
   flex-direction:column;
   gap:10px;
+  margin-top:16px;
 }
 
 .rank-item{
@@ -487,6 +510,24 @@ button{
   border-color:transparent;
 }
 
+.rank-banner{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:8px 0 14px;
+  overflow:hidden;
+}
+
+.rank-banner img{
+  width:100%;
+  max-width:320px;
+  height:auto;
+  display:block;
+  object-fit:contain;
+  opacity:.95;
+}
+
 </style>
 </head>
 
@@ -573,10 +614,14 @@ button{
 
 <section class="box">
 
-<h2>게임 테이블</h2>
+<div class="table-head">
 
-<div id="status" class="status">
-참가자를 입력해주세요.
+  <h2>게임 테이블</h2>
+
+  <div id="status" class="table-status">
+    참가자를 입력해주세요.
+  </div>
+
 </div>
 
 <button
@@ -624,11 +669,11 @@ button{
   <strong>피지컬 괴물 (3땡)</strong> : [3] 이제동/김택용 + [3] 이제동/김택용<br>
   <strong>저그 본능 (2땡)</strong> : [2] 홍진호/김명운 + [2] 홍진호/김명운<br>
   <strong>테란 정석 (1땡)</strong> : [1] 임요환/김지성 + [1] 임요환/김지성<br>
-  <strong>종족전 개막 (알리)</strong> : [1] 테란 유저 + [2] 저그 유저<br>
-  <strong>테프전 심리전 (독사)</strong> : [1] 테란 유저 + [4] 프로토스 유저<br>
-  <strong>테란 물량전 (구삥)</strong> : [1] 테란 유저 + [9] 물량형<br>
+  <strong>눈치싸움 (알리)</strong> : [1] 테란 유저 + [2] 저그 유저<br>
+  <strong>앞마당 조이기 (독사)</strong> : [1] 테란 유저 + [4] 프로토스 유저<br>
+  <strong>압도적 물량전 (구삥)</strong> : [1] 테란 유저 + [9] 물량형<br>
   <strong>멘탈 흔들기 (장삥)</strong> : [1] 테란 유저 + [10] 심리형<br>
-  <strong>프로토스 심리전 (장사)</strong> : [4] 프로토스 유저 + [10] 심리형<br>
+  <strong>치명적 심리전 (장사)</strong> : [4] 프로토스 유저 + [10] 심리형<br>
   <strong>빌드 운영 (세륙)</strong> : [4] 프로토스 유저 + [6] 운영형<br>
   <strong>완성형 경기력 (갑오)</strong> : 두 게이머 번호 합 끝수가 9<br>
   <strong>상대 전적 우세 (끗)</strong> : 두 게이머 번호 합 끝수<br>
@@ -637,6 +682,12 @@ button{
     </div>
 
   </div>
+</div>
+<div class="rank-banner">
+  <img
+    src="./icons/rank-character.png"
+    alt="족보 캐릭터"
+  />
 </div>
 
 <div id="rankArea" class="rank-list"></div>
@@ -649,7 +700,6 @@ button{
 
 </section>
 
-</div>
 </div>
 
 <script>
@@ -953,17 +1003,17 @@ function evaluateHand(cards){
   const specialMap = {
     "1-2": {
       name: "알리",
-      gamerName: "종족전 개막",
+      gamerName: "눈치싸움",
       power: 700
     },
     "1-4": {
       name: "독사",
-      gamerName: "테프전 심리전",
+      gamerName: "앞마당 조이기",
       power: 690
     },
     "1-9": {
       name: "구삥",
-      gamerName: "테란 물량전",
+      gamerName: "압도적 물량전",
       power: 680
     },
     "1-10": {
@@ -973,7 +1023,7 @@ function evaluateHand(cards){
     },
     "4-10": {
       name: "장사",
-      gamerName: "프로토스 심리전",
+      gamerName: "치명적 심리전",
       power: 660
     },
     "4-6": {
@@ -1068,10 +1118,13 @@ const info =
     ? `${label1} + ${label2} = ${p.hand || "계산중"}`
     : "대기중";
 
-      const isWinner =
-        p.hand &&
-        [...players].sort((a,b)=>b.power-a.power)[0]?.id === p.id &&
-        revealIndex >= revealQueue.length;
+      const topPower =
+  [...players].sort((a,b)=>b.power-a.power)[0]?.power || 0;
+
+const isWinner =
+  p.hand &&
+  p.power === topPower &&
+  revealIndex >= revealQueue.length;
 
       return `
         <div class="player-card ${isWinner ? "winner" : ""}">
@@ -1124,30 +1177,46 @@ function renderRanks(){
     [...players]
     .sort((a,b)=>b.power-a.power);
 
+  let currentRank = 0;
+  let previousPower = null;
+
   area.innerHTML =
-    ranked.map((p,index)=>`
+    ranked.map((p,index)=>{
 
-      <div class="rank-item ${
-        index===0 && p.hand
-        ? "winner"
-        : ""
-      }">
+      if(p.power !== previousPower){
+        currentRank = index + 1;
+        previousPower = p.power;
+      }
 
-        <div class="rank-name">
-          ${index+1}위 · ${p.name}
+      const topPower =
+        ranked[0]?.power || 0;
+
+      const isTopWinner =
+        p.hand &&
+        p.power === topPower;
+
+      return `
+        <div class="rank-item ${
+          isTopWinner
+          ? "winner"
+          : ""
+        }">
+
+          <div class="rank-name">
+            ${currentRank}위 · ${p.name}
+          </div>
+
+          <div class="rank-hand">
+            ${
+              p.hand
+              ? p.hand
+              : "대기중"
+            }
+          </div>
+
         </div>
-
-        <div class="rank-hand">
-          ${
-            p.hand
-            ? p.hand
-            : "대기중"
-          }
-        </div>
-
-      </div>
-
-    `).join("");
+      `;
+    }).join("");
 }
 
 function finishGame(){
@@ -1156,20 +1225,30 @@ function finishGame(){
     [...players]
     .sort((a,b)=>b.power-a.power);
 
-  const winner = ranked[0];
+  const topPower = ranked[0].power;
+
+  const winners = ranked.filter(
+    p => p.power === topPower
+  );
 
   document.getElementById("status").textContent =
-    `최종 승자 : ${winner.name}`;
+    `최종 승자 : ${winners.map(w=>w.name).join(" / ")}`;
 
   document.getElementById("winnerArea").style.display =
     "block";
 
-document.getElementById("winnerArea").innerHTML =
-  `
-    🏆 WINNER 🏆<br>
-    <span style="font-size:30px;">${winner.name}</span><br>
-    <span style="font-size:20px;">${winner.hand}</span>
-  `;
+  document.getElementById("winnerArea").innerHTML =
+    `
+      🏆 ${winners.length > 1 ? "공동 WINNER" : "WINNER"} 🏆<br>
+
+      <span style="font-size:30px;">
+        ${winners.map(w=>w.name).join(" / ")}
+      </span><br>
+
+      <span style="font-size:20px;">
+        ${winners[0].hand}
+      </span>
+    `;
 
   document.getElementById("revealBtn").style.display =
     "none";
