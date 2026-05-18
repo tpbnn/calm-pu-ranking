@@ -575,6 +575,129 @@ button{
   box-shadow:
     0 4px 10px rgba(37,99,235,.18);
 }
+html, body{
+  max-width:100%;
+  overflow-x:hidden;
+}
+
+.mobile-nav{
+  display:none;
+}
+
+@media(max-width:768px){
+  .wrap{
+    width:100%;
+    max-width:100%;
+    margin-left:0;
+    margin-right:0;
+    padding:16px 12px 40px;
+    overflow:hidden;
+  }
+
+  .top-tabs{
+    display:none;
+  }
+
+  .mobile-nav{
+    display:block;
+    margin-bottom:14px;
+    position:relative;
+  }
+
+  .hamburger-btn{
+    width:100%;
+    height:48px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#1d4ed8,#7c3aed);
+    color:white;
+    font-size:16px;
+    font-weight:1000;
+  }
+
+  .mobile-menu{
+    display:none;
+    margin-top:8px;
+    background:white;
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(15,23,42,.12);
+  }
+
+  .mobile-menu.show{
+    display:block;
+  }
+
+  .mobile-menu a{
+    display:block;
+    padding:14px 16px;
+    color:var(--text);
+    text-decoration:none;
+    font-weight:900;
+    border-bottom:1px solid var(--line);
+  }
+
+  .mobile-menu a:last-child{
+    border-bottom:0;
+  }
+
+  .hero{
+    width:100%;
+    max-width:100%;
+    padding:20px;
+    overflow:hidden;
+  }
+
+  .hero-title{
+    flex-wrap:wrap;
+  }
+
+  .hero h1{
+    font-size:22px;
+  }
+
+  .hero p{
+    font-size:14px;
+  }
+
+  .hero-image{
+    max-width:120px;
+    width:35%;
+    height:auto;
+  }
+
+  .layout{
+    grid-template-columns:1fr;
+    width:100%;
+    max-width:100%;
+  }
+
+  .box,
+  .game-box{
+    width:100%;
+    max-width:100%;
+    padding:16px;
+  }
+
+  .board-wrap{
+    width:100%;
+    max-width:100%;
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .side-new-game{
+    width:100%;
+    height:56px;
+    border-radius:16px;
+    font-size:18px;
+  }
+
+  .footer{
+    width:100%;
+    max-width:100%;
+  }
+}
 
 </style>
 </head>
@@ -583,6 +706,19 @@ button{
   
 
 <div class="wrap">
+
+  <div class="mobile-nav">
+  <button class="hamburger-btn" onclick="toggleMobileMenu()">☰ 메뉴</button>
+
+  <div id="mobileMenu" class="mobile-menu">
+    <a href="./index.html">덕몽어스</a>
+    <a href="./rating.html">캄푸평점</a>
+    <a href="./suttda.html">스타 게이머 섯다</a>
+    <a href="./bingo_realtime_game/bingo.html">래더 빙고</a>
+    <a href="./calm2048.html">캄몬 2048</a>
+  </div>
+</div>
+
   <div class="top-tabs">
   <a href="./index.html" class="tab-btn">
     덕몽어스
@@ -597,6 +733,9 @@ button{
   </a>
   <a href="./bingo_realtime_game/bingo.html" class="tab-btn">
   래더 빙고
+</a>
+<a href="./calm2048.html" class="tab-btn">
+  캄몬 2048
 </a>
 </div>
 
@@ -1322,6 +1461,11 @@ document
     addPlayer();
   }
 });
+function toggleMobileMenu(){
+  document.getElementById("mobileMenu").classList.toggle("show");
+}
+window.toggleMobileMenu = toggleMobileMenu;
+
 </script>
 
 </body>
