@@ -568,7 +568,7 @@ function boardTemplate(b){
 
     <aside class="control-panel">
       <div class="toolbar">
-        <div class="big-label">라운드 수</div>
+        <div class="big-label">매치 수</div>
         <select class="round-select" onchange="changeRoundCount(${b.id},this.value)">
           <option value="5" ${b.count==5?'selected':''}>5R</option>
           <option value="7" ${b.count==7?'selected':''}>7R</option>
@@ -600,7 +600,7 @@ function boardTemplate(b){
       <div class="bottom-tools">
         <button class="tool-btn gray" onclick="clearResults(${b.id})">승패 초기화</button>
         <button class="tool-btn red" onclick="resetBoard(${b.id})">보드 초기화</button>
-        <button class="tool-btn gray" onclick="loadBattleData(this)">리스트 업데이트</button>
+        <button class="tool-btn gray" onclick="loadBattleData(this)">선수 목록 업데이트</button>
       </div>
 
       <div class="bottom-tools two">
