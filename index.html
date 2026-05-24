@@ -592,6 +592,28 @@ html, body{
   }
 }
 
+.team-mode-tabs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:10px;
+}
+
+.team-mode-btn{
+  height:44px;
+  border-radius:14px;
+  background:#eef2ff;
+  color:#3730a3;
+  font-weight:900;
+}
+
+.team-mode-btn.active{
+  background:#2563eb;
+  color:#fff;
+}
+
+
+
   </style>
 </head>
 
@@ -733,9 +755,30 @@ html, body{
       <div id="tieSelectArea"></div>
 
       <label for="pinballOrder">
-        핀볼 순서 입력
+        팀 선정하기
       </label>
 
+<div class="team-mode-tabs">
+  <button
+    id="orderModeBtn"
+    class="team-mode-btn active"
+    type="button"
+    onclick="setTeamMode('order')"
+  >
+    순서대로 팀선정
+  </button>
+
+  <button
+    id="randomModeBtn"
+    class="team-mode-btn"
+    type="button"
+    onclick="setTeamMode('random')"
+  >
+    랜덤으로 팀선정
+  </button>
+</div>
+<br>
+      
       <textarea
         id="pinballOrder"
         placeholder="예) 마토, 윤환, 치리, 타밍"
@@ -749,7 +792,7 @@ html, body{
         class="btn-success btn-full"
         onclick="calculateTeams()"
       >
-        팀 합계 계산하기
+        팀 선정 & 계산
       </button>
 
       <div id="calcMessage" class="ok"></div>
@@ -1127,10 +1170,22 @@ function calculateTeams() {
       );
     });
 
-  const orderNames =
-    parseOrder(
-      document.getElementById("pinballOrder").value
-    );
+  
+const originalOrderNames =
+  parseOrder(
+    document.getElementById("pinballOrder").value
+  );
+
+let orderNames = [...originalOrderNames];
+
+if(teamMode === "random"){
+  if(!confirm("팀을 랜덤으로 선정하시겠습니까?")){
+    return;
+  }
+
+  orderNames = shuffleNames(originalOrderNames);
+}
+
 
   if (orderNames.length !== remaining.length) {
     message.textContent =
@@ -1199,8 +1254,11 @@ function calculateTeams() {
 
 
 
-  message.className = "ok";
-  message.textContent = "계산 완료!";
+message.className = "ok";
+message.textContent =
+  teamMode === "random"
+    ? "랜덤 팀 선정 완료!"
+    : "입력 순서대로 팀 선정 완료!";
 
   renderResult({
     first,
@@ -1380,6 +1438,30 @@ function toggleMobileMenu(){
   document.getElementById("mobileMenu").classList.toggle("show");
 }
 window.toggleMobileMenu = toggleMobileMenu;
+
+let teamMode = "order";
+
+function setTeamMode(mode){
+  teamMode = mode;
+
+  document.getElementById("orderModeBtn")
+    .classList.toggle("active", mode === "order");
+
+  document.getElementById("randomModeBtn")
+    .classList.toggle("active", mode === "random");
+}
+
+function shuffleNames(array){
+  const arr = [...array];
+
+  for(let i = arr.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+
+  return arr;
+}
 
 </script>
 
